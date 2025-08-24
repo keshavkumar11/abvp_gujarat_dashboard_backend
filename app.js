@@ -1,21 +1,21 @@
-const express = require('express');
-const cors = require('cors');
-const connectDB = require('./src/config/db')
+import express from "express";
+import dotenv from "dotenv";
+import connectDB from "./src/config/db";
+import institutionRoutes from "./src/routes/institutionRoutes";
+import authRoutes from "./src/routes/authRoutes"
+
+dotenv.config();
 
 const app = express();
 
-// connect to DB
-connectDB();
 
-app.use(cors());
 app.use(express.json())
+app.use("/api/auth",authRoutes);
+app.use("/api/institutions",institutionRoutes);
 
 app.get('/',(req,res)=>{
-    res.json({
-        ok:true,
-        service:'ABVP GUJARAT API'
-    })
+    res.send("API is running...")
 })
 
-module.exports=app;
+export default app;
 
