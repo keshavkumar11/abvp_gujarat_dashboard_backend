@@ -7,7 +7,7 @@ import {
   getDistrictSummary,
   getGujaratSummary,
 } from "../controllers/institutionController.js";
-import { protect, admin } from "./middleware/authMiddleware.js";
+import { protect, admin } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 

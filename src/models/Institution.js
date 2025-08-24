@@ -35,5 +35,22 @@ const institutionSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// 🔹 Pre-save hook to calculate amounts
+institutionSchema.pre("save", function (next) {
+  const studentCount = this.male + this.female;
+  const expectedAmount = studentCount * 5 + this.professor * 100;
+
+  // if receivedAmount already set by admin, keep it
+  // else default to 0
+  if (this.receivedAmount === undefined || this.receivedAmount === null) {
+    this.receivedAmount = 0;
+  }
+
+  this.leftAmount = expectedAmount - this.receivedAmount;
+  this.totalMembership = studentCount + this.professor;
+
+  next();
+});
+
 const Institution = mongoose.model("Institution", institutionSchema);
 export default Institution;

@@ -4,13 +4,13 @@ import institutionRoutes from "./src/routes/institutionRoutes.js";
 import authRoutes from "./src/routes/authRoutes.js"
 import cors from "cors";
 
-app.use(cors());
+
 
 dotenv.config();
 
 const app = express();
 
-
+app.use(cors());
 app.use(express.json())
 app.use("/api/auth",authRoutes);
 app.use("/api/institutions",institutionRoutes);
