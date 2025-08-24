@@ -1,8 +1,10 @@
 import express from "express";
 import dotenv from "dotenv";
-import connectDB from "./src/config/db";
-import institutionRoutes from "./src/routes/institutionRoutes";
-import authRoutes from "./src/routes/authRoutes"
+import institutionRoutes from "./src/routes/institutionRoutes.js";
+import authRoutes from "./src/routes/authRoutes.js"
+import cors from "cors";
+
+app.use(cors());
 
 dotenv.config();
 

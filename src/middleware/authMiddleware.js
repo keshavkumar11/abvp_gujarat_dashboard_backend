@@ -17,7 +17,7 @@ export const protect = async (req, res, next) => {
   }
 
   if (!token) {
-    res.status(401).json({ message: "Not authorized, no token" });
+    return res.status(401).json({ message: "Not authorized, no token" });
   }
 };
 
@@ -25,6 +25,6 @@ export const admin = (req, res, next) => {
   if (req.user && req.user.username) {   // since you only have admin users
     next();
   } else {
-    res.status(403).json({ message: "Admin access only" });
+    return   res.status(403).json({ message: "Admin access only" });
   }
 };
